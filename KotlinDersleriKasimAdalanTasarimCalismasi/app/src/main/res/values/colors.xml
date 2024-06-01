@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    <!--uygulama renkleri-->
+    <color name="anaRenk">#CB2020</color>
+    <color name="anaRenkKoyu">#BF2020</color>
+    <color name="yaziRenk1">#FFFFFF</color>
+    <color name="yaziRenk2">#636363</color>
+
+
+    <!--uygulama renklerİ2-->
+    <color name="anaRenk2">#8C031C</color>
+    <color name="anaRenkKoyu2">#D96704</color>
+    <color name="yaziRenk3">#F2B279</color>
+    <color name="yaziRenk4">#BF3604</color>
+    <color name="yaziRenk5">#F2F2F2</color>
+
+
+</resources>

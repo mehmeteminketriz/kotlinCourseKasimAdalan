@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="background">#26263d</color>
+    <color name="statusBar">#33334d</color>
+    <color name="skip">#33334d</color>
+    <color name="tittleColor">#ffffff</color>
+    <color name="buttonColor">#1148c2</color>
+    <color name="buttonTextColor">#fdfeff</color>
+</resources>

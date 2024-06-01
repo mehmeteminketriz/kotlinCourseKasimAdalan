@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Learn Kotlin</string>
+    <string name="buttonSkip">Skip</string>
+    <string name="tittle">Start Learn</string>
+    <string name="getStarted">Get Started</string>
+    <string name="descriptions">Are you ready to learn Kotlin in the easiest way?</string>
+</resources>
