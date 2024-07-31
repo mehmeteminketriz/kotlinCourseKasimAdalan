@@ -3,9 +3,11 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.ketrizsoftware.kisileruygulamasi.R
 import com.ketrizsoftware.kisileruygulamasi.data.entity.Kisiler
 import com.ketrizsoftware.kisileruygulamasi.databinding.CardTasarimBinding
 import com.ketrizsoftware.kisileruygulamasi.databinding.FragmentAnasayfaBinding
@@ -22,7 +24,7 @@ class KisilerAdapter (var mContext:Context, var kisilerListesi:List<Kisiler>)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardTasarimTutucu {
         // vievBinding kurulumu yapmamız gerek
         //parent yazılımsal tasarım demek
-        val binding = CardTasarimBinding.inflate(LayoutInflater.from(mContext),parent, false)
+        val binding :CardTasarimBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext),R.layout.card_tasarim,parent, false)
 
         return CardTasarimTutucu(binding) // fonksiyon dönüş türü CardTasarimTutucu
     }
@@ -35,8 +37,7 @@ class KisilerAdapter (var mContext:Context, var kisilerListesi:List<Kisiler>)
         val kisi =kisilerListesi.get(position)
         val cardTasarim = holder.tasarim
 
-        cardTasarim.textViewKisiAdi.text = "İsim: ${kisi.kisi_ad}"
-        cardTasarim.textViewKisiTel.text = "Tel Numarası: ${kisi.kisi_tel}"
+        cardTasarim.kisiNesnesi = kisi
 
         cardTasarim.cardViewSatir.setOnClickListener { // karta basınca Kişi Detay sayfasına geçiş yapıp veriyi aktarıyoruz
             val gecis = AnasayfaFragmentDirections.detayGecis(kisi)

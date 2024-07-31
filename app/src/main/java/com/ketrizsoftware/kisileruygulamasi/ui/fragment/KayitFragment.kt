@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.databinding.DataBindingUtil
 import com.google.android.material.snackbar.Snackbar
 import com.ketrizsoftware.kisileruygulamasi.R
 import com.ketrizsoftware.kisileruygulamasi.databinding.FragmentKayitBinding
@@ -19,25 +20,14 @@ class KayitFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentKayitBinding.inflate(inflater, container, false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_kayit, container, false)
 
-
-
-        binding.buttonKaydet.setOnClickListener {
-            val kisi_ad = binding.editTextKisiAdi.text.toString()
-            val kisi_tel = binding.editTextKisiTel.text.toString()
-            kaydet(kisi_ad,kisi_tel)
-
-
-
-
-        }
-
-
+        binding.kisiKayitToolbar = "Kişi Kayıt"
+        binding.kayitFragment = this
         return binding.root
     }
 
-    fun kaydet(kisi_ad:String, kisi_tel:String){
+    fun buttonKaydet(kisi_ad:String, kisi_tel:String){
 
         var textViewAd = binding.editTextKisiAdi.text.toString().trim()
         var textViewTel = binding.editTextKisiTel.text.toString().trim()
@@ -54,6 +44,4 @@ class KayitFragment : Fragment() {
             requireActivity().supportFragmentManager.popBackStack()
         }
     }
-
-
 }

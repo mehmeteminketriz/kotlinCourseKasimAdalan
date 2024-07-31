@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.widget.SearchView
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -22,7 +23,10 @@ class AnasayfaFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentAnasayfaBinding.inflate(inflater, container, false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_anasayfa, container, false)
+
+        binding.anasayfaFragmentToolbar = "REHBERİM"
+        binding.anasayfaFragment = this
 
         /*
         bu kutucuklu olmasını sağlar
@@ -36,7 +40,7 @@ class AnasayfaFragment : Fragment() {
 
 
         // binding.rv.layoutManager diyerek tasarımsal yapılarımızın nasıl olacağını söylüyoruz
-        binding.rv.layoutManager = LinearLayoutManager(requireContext()) // bu alt alta gözükmesini sağlayacak
+        // bu işi tasarımda halletik = binding.rv.layoutManager = LinearLayoutManager(requireContext()) // bu alt alta gözükmesini sağlayacak
 
         val kisilerListesi = ArrayList<Kisiler>()
 
@@ -51,7 +55,7 @@ class AnasayfaFragment : Fragment() {
         kisilerListesi.add(k4)
 
         val kisilerAdapter = KisilerAdapter(requireContext(),kisilerListesi) // kisilerAdapter dan nesne ürettik
-        binding.rv.adapter = kisilerAdapter // ve oluşturduğumuz adapteri recycler view e aktardık. Bu yapı olmadan görüntüleme yapamayız
+        binding.kisilerAdapter = kisilerAdapter // ve oluşturduğumuz adapteri recycler view e aktardık. Bu yapı olmadan görüntüleme yapamayız
 
         binding.fab.setOnClickListener {
             Navigation.findNavController(binding.fab).navigate(R.id.kayitGecis)
@@ -75,6 +79,10 @@ class AnasayfaFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    fun fabTiklama(it:View){
+        Navigation.findNavController(it).navigate(R.id.kayitGecis)
     }
 
     fun ara(aramaKelimesi:String){

@@ -10,6 +10,9 @@
         <variable
             name="anasayfaFragment"
             type="com.ketrizsoftware.kisileruygulamasi.ui.fragment.AnasayfaFragment" />
+        <variable
+            name="kisilerAdapter"
+            type="com.ketrizsoftware.kisileruygulamasi.ui.adapter.KisilerAdapter" />
 
     </data>
 
@@ -34,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="REHBERİM"
+                android:text="@{anasayfaFragmentToolbar}"
                 android:textColor="@color/toolbar_color_text"
                 android:textSize="24dp"
                 tools:layout_editor_absoluteX="147dp"
@@ -48,6 +51,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:clickable="true"
+            android:onClick="@{()-> anasayfaFragment.fabTiklama(fab)}"
             android:src="@drawable/add_icon"
             app:backgroundTint="@color/button_kaydet_guncelle"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -69,6 +73,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:adapter="@{kisilerAdapter}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
