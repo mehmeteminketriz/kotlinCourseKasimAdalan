@@ -38,6 +38,7 @@ class KayitFragment : Fragment() {
     }
 
     fun buttonKaydet(kisi_ad:String, kisi_tel:String){
+        viewModel.Kaydet(kisi_ad,kisi_tel)
 
         var textViewAd = binding.editTextKisiAdi.text.toString().trim()
         var textViewTel = binding.editTextKisiTel.text.toString().trim()

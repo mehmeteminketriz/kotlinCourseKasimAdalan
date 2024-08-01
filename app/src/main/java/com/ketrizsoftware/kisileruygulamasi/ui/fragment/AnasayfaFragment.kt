@@ -46,20 +46,11 @@ class AnasayfaFragment : Fragment() {
         // binding.rv.layoutManager diyerek tasarımsal yapılarımızın nasıl olacağını söylüyoruz
         // bu işi tasarımda halletik = binding.rv.layoutManager = LinearLayoutManager(requireContext()) // bu alt alta gözükmesini sağlayacak
 
-        val kisilerListesi = ArrayList<Kisiler>()
+        viewModel.kisilerListesi.observe(viewLifecycleOwner){
+            val kisilerAdapter = KisilerAdapter(requireContext(),it,viewModel) // kisilerAdapter dan nesne ürettik
+            binding.kisilerAdapter = kisilerAdapter // ve oluşturduğumuz adapteri recycler view e aktardık. Bu yapı olmadan görüntüleme yapamayız
+        }
 
-        val k1 = Kisiler(1,"Babam","05448177242")
-        val k2 = Kisiler(2,"Annem","05456933338")
-        val k3 = Kisiler(3,"Usta","05459175045")
-        val k4 = Kisiler(4,"Hafız","05441818382")
-
-        kisilerListesi.add(k1)
-        kisilerListesi.add(k2)
-        kisilerListesi.add(k3)
-        kisilerListesi.add(k4)
-
-        val kisilerAdapter = KisilerAdapter(requireContext(),kisilerListesi) // kisilerAdapter dan nesne ürettik
-        binding.kisilerAdapter = kisilerAdapter // ve oluşturduğumuz adapteri recycler view e aktardık. Bu yapı olmadan görüntüleme yapamayız
 
         binding.fab.setOnClickListener {
             Navigation.findNavController(binding.fab).navigate(R.id.kayitGecis)
@@ -70,13 +61,13 @@ class AnasayfaFragment : Fragment() {
 
             // bu harf girdikçe ve sildikçe bize sonuç veriyor
             override fun onQueryTextChange(newText: String): Boolean {
-                ara(newText)
+                viewModel.ara(newText)
                 return true
             }
 
             // bu arama butonuna basınca bize sonuç veriyor
             override fun onQueryTextSubmit(query: String): Boolean {
-                ara(query)
+                viewModel.ara(query)
                 return true
             }
         })
@@ -97,8 +88,8 @@ class AnasayfaFragment : Fragment() {
         Navigation.findNavController(it).navigate(R.id.kayitGecis)
     }
 
-    fun ara(aramaKelimesi:String){
-        Log.e("Kişi Ara",aramaKelimesi)
+    override fun onResume() {
+        super.onResume()
+        viewModel.kisileriYukle()
     }
-
 }

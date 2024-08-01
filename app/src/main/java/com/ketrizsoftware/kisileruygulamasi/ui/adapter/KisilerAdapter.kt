@@ -12,8 +12,9 @@ import com.ketrizsoftware.kisileruygulamasi.data.entity.Kisiler
 import com.ketrizsoftware.kisileruygulamasi.databinding.CardTasarimBinding
 import com.ketrizsoftware.kisileruygulamasi.databinding.FragmentAnasayfaBinding
 import com.ketrizsoftware.kisileruygulamasi.ui.fragment.AnasayfaFragmentDirections
+import com.ketrizsoftware.kisileruygulamasi.ui.viewmodel.AnasayfaViewModel
 
-class KisilerAdapter (var mContext:Context, var kisilerListesi:List<Kisiler>)
+class KisilerAdapter (var mContext:Context, var kisilerListesi:List<Kisiler>,var viewModel:AnasayfaViewModel)
     : RecyclerView.Adapter<KisilerAdapter.CardTasarimTutucu>() { // Card Tasarım tutucuyu buraya tanıttık ve 3 adet methodu buraya implment ettik
 
     // bu bizim card tasarım activity mizi tutuyor
@@ -46,7 +47,7 @@ class KisilerAdapter (var mContext:Context, var kisilerListesi:List<Kisiler>)
 
         cardTasarim.imageViewSil.setOnClickListener {
             Snackbar.make(cardTasarim.imageViewSil,"${kisi.kisi_ad} Silinsin mi?",Snackbar.LENGTH_SHORT).setAction("Evet"){
-                sil(kisi.kisi_id)
+                viewModel.sil(kisi.kisi_id)
             }.show()
         }
 
@@ -57,7 +58,4 @@ class KisilerAdapter (var mContext:Context, var kisilerListesi:List<Kisiler>)
         return kisilerListesi.size
     }
 
-    fun sil(kisi_id:Int){
-        Log.e("Kişi Sil",kisi_id.toString())
-    }
 }
