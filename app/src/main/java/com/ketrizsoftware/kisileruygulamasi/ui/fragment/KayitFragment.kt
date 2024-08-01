@@ -9,13 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
 import com.ketrizsoftware.kisileruygulamasi.R
 import com.ketrizsoftware.kisileruygulamasi.databinding.FragmentKayitBinding
+import com.ketrizsoftware.kisileruygulamasi.ui.viewmodel.KayitViewModel
 
 
 class KayitFragment : Fragment() {
     private lateinit var binding: FragmentKayitBinding
+    private lateinit var viewModel: KayitViewModel
 
 
     override fun onCreateView(
@@ -25,6 +28,13 @@ class KayitFragment : Fragment() {
         binding.kisiKayitToolbar = "Kişi Kayıt"
         binding.kayitFragment = this
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // tempViewModel geçici view model anlamına geliyor
+        val tempViewModel:KayitViewModel by viewModels()
+        viewModel = tempViewModel
     }
 
     fun buttonKaydet(kisi_ad:String, kisi_tel:String){

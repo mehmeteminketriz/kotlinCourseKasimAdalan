@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -16,10 +17,13 @@ import com.ketrizsoftware.kisileruygulamasi.R
 import com.ketrizsoftware.kisileruygulamasi.data.entity.Kisiler
 import com.ketrizsoftware.kisileruygulamasi.databinding.FragmentAnasayfaBinding
 import com.ketrizsoftware.kisileruygulamasi.ui.adapter.KisilerAdapter
+import com.ketrizsoftware.kisileruygulamasi.ui.viewmodel.AnasayfaViewModel
+import com.ketrizsoftware.kisileruygulamasi.ui.viewmodel.KayitViewModel
 
 class AnasayfaFragment : Fragment() {
 
     private lateinit var binding: FragmentAnasayfaBinding
+    private lateinit var  viewModel : AnasayfaViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -80,6 +84,14 @@ class AnasayfaFragment : Fragment() {
 
         return binding.root
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // tempViewModel geçici view model anlamına geliyor
+        val tempViewModel: AnasayfaViewModel by viewModels()
+        viewModel = tempViewModel
+    }
+
 
     fun fabTiklama(it:View){
         Navigation.findNavController(it).navigate(R.id.kayitGecis)

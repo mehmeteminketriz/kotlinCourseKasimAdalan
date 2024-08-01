@@ -7,13 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.ketrizsoftware.kisileruygulamasi.R
 import com.ketrizsoftware.kisileruygulamasi.databinding.FragmentDetayBinding
+import com.ketrizsoftware.kisileruygulamasi.ui.viewmodel.DetayViewModel
+import com.ketrizsoftware.kisileruygulamasi.ui.viewmodel.KayitViewModel
 
 class DetayFragment : Fragment() {
     private lateinit var binding: FragmentDetayBinding
+    private lateinit var  viewModel : DetayViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -32,6 +36,13 @@ class DetayFragment : Fragment() {
         binding.editTextKisiTel.setText(gelenKisi.kisi_tel)
 
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // tempViewModel geçici view model anlamına geliyor
+        val tempViewModel: DetayViewModel by viewModels()
+        viewModel = tempViewModel
     }
 
     fun buttonGuncelle(kisi_id:Int,kisi_ad:String, kisi_tel:String){
